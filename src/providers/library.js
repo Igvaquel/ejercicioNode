@@ -22,14 +22,14 @@ const getLibrary = async(libraryId) => {
     }
 }
 
-const getAllLibrarys = async() => {
+const getAllLibrarys = async(options) => {
     try {
-      const users = await Library.findAll({
+      const librarys = await Library.findAll({
         where: {
             id: options.id
         }
       });
-      return users;
+      return librarys;
     } catch (error) {
       console.error("Error when fetching Library", error);
       throw error;

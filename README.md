@@ -6,3 +6,5 @@ En el Segundo commit generamos una instancia de la clase Sequelize, hacemos la c
 En el Tercer commit definimos las rutas 
 
 En el cuarto commit saltamos directamente a la carpeta provider que es la forma que tengo de conectar la entidad que va recibir mi DB con el modelo de negocio
+
+En el quinto commit tomamos lo que devuelve el provider y para aplicarlo en el service, (toma la logica para devolver un producto o entidad que se acerca mas a lo que busca el cliente) 
