@@ -9,8 +9,8 @@ const getBook = async(bookId) =>{
     return book;
 };
 
-const getAllBooks = async(titulo,id) =>{
-    const books = await bookProvider.getAllBooks({titulo, id});
+const getAllBooks = async(titulo,bookId) =>{
+    const books = await bookProvider.getAllBooks({titulo, bookId});
     return books;
 };
 
