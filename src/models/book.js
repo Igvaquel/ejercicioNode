@@ -29,6 +29,11 @@ const Book = sequelize.define("Books",{
         type: DataTypes.INTEGER,
         allowNull:false,
     },
+    deleted: {
+        type: DataTypes.STRING,
+        allowNull:false, 
+        defaultValue: false,
+    }
 
 });
 

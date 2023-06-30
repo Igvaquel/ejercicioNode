@@ -21,8 +21,13 @@ const Library = sequelize.define("Librarys",{
     },
     telefono: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull:false,         
     },
+    deleted: {
+        type: DataTypes.STRING,
+        allowNull:false, 
+        defaultValue: false,
+    }
 
 });
 
