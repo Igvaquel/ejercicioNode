@@ -25,7 +25,7 @@ const getBookController = async (req,res) => {
 
 const getAllBooksController = async (req,res) => {
     try {
-        const books = await bookService.getAllBooks( req.params.titulo, req.params.bookId );
+        const books = await bookService.getAllBooks();
         if(!books){
             res.status(404).json({action: "getAllBooks", error: "Any Book was found"});
         }else{

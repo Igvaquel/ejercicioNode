@@ -25,7 +25,7 @@ const getLibraryController = async (req,res) => {
 
 const getAllLibrarysController = async (req,res) => {
     try {
-        const librarys = await libraryService.getAllLibrarys( req.params.name, req.params.libraryId );
+        const librarys = await libraryService.getAllLibrarys();
         if(!librarys){
             res.status(404).json({action: "getAllLibrarys", error: "Any Library was found"});
         }else{
@@ -61,7 +61,6 @@ const deleteLibraryController = async(req,res) => {
         }
     } catch (error) {
         res.status(500).json({ action: "deleteLibrary", error: error.message});
-        
     }
 }
 

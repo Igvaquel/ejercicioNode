@@ -14,7 +14,9 @@ const createBook = async(book) => {
 }
 const getBook = async(bookId) => {
     try {
-        const bookFound = await Book.findByPk(bookId, {include: {all: true}});
+        const bookFound = await Book.findByPk(bookId, {
+            where: { deleted: 0},
+            include: {all: true}});
         return bookFound;
     } catch (error) {
         console.error("Error when feching Book", error);
@@ -22,12 +24,10 @@ const getBook = async(bookId) => {
     }
 }
 
-const getAllBooks = async(options) => {
+const getAllBooks = async() => {
     try {
       const books = await Book.findAll({
-        where: {
-            id: options.id
-        },
+        where: { deleted: 0},
         include: {
             all: true
         }
@@ -41,10 +41,12 @@ const getAllBooks = async(options) => {
 
 const updateBook = async(bookId, book) => {
     try {
-        const BookFound = Book.findByPk(bookId, {include: {all: true}});
-        if(BookFound) {
-            await BookFound.update(book);
-            return BookFound;
+        const bookFound = await Book.findByPk(bookId, {
+            include: {all: true},
+        });
+        if(bookFound) {
+            await bookFound.update(book);
+            return bookFound;
         }else{
             throw new Error("Book not found");
         }       
@@ -55,10 +57,11 @@ const updateBook = async(bookId, book) => {
 }
 const deleteBook = async(bookId) => {
     try {
-        const BookFound = await Book.findByPk(bookId, {include: {all: true}});
-        if(BookFound) {
-            BookFound.deleted = true;
-            return BookFound;
+        const bookFound = await Book.findByPk(bookId, {include: {all: true}});
+        if(bookFound) {
+            bookFound.deleted = true;
+            bookFound.save();
+            return bookFound;
         }else{
             throw new Error("Book not found");
         }       

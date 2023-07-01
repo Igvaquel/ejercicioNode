@@ -3,7 +3,7 @@ const { sequelize } = require("../config/db-config");
 const Book = require("./book");
 
 
-const Library = sequelize.define("Librarys",{
+const Library = sequelize.define("Library",{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -24,7 +24,7 @@ const Library = sequelize.define("Librarys",{
         allowNull:false,         
     },
     deleted: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull:false, 
         defaultValue: false,
     }
@@ -32,6 +32,8 @@ const Library = sequelize.define("Librarys",{
 });
 
 Library.hasMany(Book);
-Book.belongsTo(Library)
+Book.belongsTo(Library);
+
 
 module.exports = Library;
+

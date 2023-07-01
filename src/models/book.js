@@ -1,7 +1,8 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db-config");
+const Library = require("./library");
 
-const Book = sequelize.define("Books",{
+const Book = sequelize.define("Book",{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -30,12 +31,13 @@ const Book = sequelize.define("Books",{
         allowNull:false,
     },
     deleted: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull:false, 
         defaultValue: false,
     }
 
 });
+
 
 
 module.exports = Book;

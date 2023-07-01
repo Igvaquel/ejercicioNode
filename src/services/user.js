@@ -10,24 +10,15 @@ const getUser = async(userId) =>{
     return user;
 };
 
-
-const getAllUsers = async(name,id) =>{
-    const users = await userProvider.getAllUsers({name, id});
-    return users ;
+const validateUser = async(user, pass) =>{
+    const userFound = await userProvider.validateUser({user, pass});
+    return userFound;
 };
 
-const updateUser = async(userId, user) => {
-    const userFound = await userProvider.getUser(userId);
-    if(userFound){
-        const userUpdated = await userProvider.updateUser(userId, user);
-        return userUpdated;
-    }
-    return null;
-}
 
 module.exports = {
     createUser,
     getUser,
-    getAllUsers,
-    updateUser
+    validateUser,
+    
 };

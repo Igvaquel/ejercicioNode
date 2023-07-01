@@ -26,43 +26,28 @@ const getUser = async(userId) => {
 };
 
 
-const getAllUsers = async(options) => {
+const validateUser = async(options) => {
     try {
-      const users = await User.findAll({
-        where: {
-            name: options.name
-        },
-        include: {
-            all: true
+        const user = await User.findAll({
+            where: { 
+                name: options.name, 
+                password: options.password
+            } 
+        });
+        if(user.length !== 0) {
+            return user;
         }
-      });
-      return users;
+        return false;
     } catch (error) {
-      console.error("Error when fetching User", error);
-      throw error;
+        console.error("Error when validating", error);
+        return false;
     }
 };
-
-const updateUser = async(userId, user) => {
-    try {
-        const userFound = await User.findByPk(userId, {include: {all: true}});
-        if(userFound) {
-            await userFound.update(user);
-            return userFound;
-        }else{
-            throw new Error("User not found");
-        }           
-    } catch (error) {
-        console.error("Error when updating User", error);
-      throw error;
-    }
-};
-
 
 
 module.exports = {
     createUser,
     getUser,
-    getAllUsers,
-    updateUser
+    validateUser,
+    
 };

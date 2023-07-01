@@ -9,8 +9,8 @@ const getLibrary = async(libraryId) =>{
     return library;
 };
 
-const getAllLibrarys = async(name,id) =>{
-    const librarys = await libraryProvider.getAllLibrarys({name, id});
+const getAllLibrarys = async() =>{
+    const librarys = await libraryProvider.getAllLibrarys();
     return librarys;
 };
 

@@ -1,7 +1,16 @@
 const { bookProvider } = require("../providers");
+const { libraryProvider } = require("../providers");
+
 
 const createbook = async(book) => {
-    return await bookProvider.createBook(book);
+    const library = await libraryProvider.getLibrary(book.library);
+
+    if(library){
+        const newBook = await bookProvider.createBook(book);
+        return newBook;
+    }
+
+    //return await bookProvider.createBook(book);
 };
 
 const getBook = async(bookId) =>{
@@ -9,8 +18,8 @@ const getBook = async(bookId) =>{
     return book;
 };
 
-const getAllBooks = async(titulo,bookId) =>{
-    const books = await bookProvider.getAllBooks({titulo, bookId});
+const getAllBooks = async() =>{
+    const books = await bookProvider.getAllBooks();
     return books;
 };
 

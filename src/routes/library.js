@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const {libraryController} = require("../controllers")
+const {libraryController} = require("../controllers");
+const { jwtValidMDW, userIsAdminMDW} = require("../middleware/auth-mdw");
 
 
-router.post("/", libraryController.createLibraryController);
+router.post("/",userIsAdminMDW ,libraryController.createLibraryController);
 
-router.get("/:libraryId", libraryController.getLibraryController );
+router.get("/:libraryId", jwtValidMDW,libraryController.getLibraryController );
 
-router.get("/", libraryController.getAllLibrarysController );
+router.get("/",jwtValidMDW ,libraryController.getAllLibrarysController );
 
-router.put("/:libraryId/library", libraryController.getLibraryController );
+router.put("/:libraryId",userIsAdminMDW ,libraryController.updateLibraryController );
 
 
-router.delete("/:libraryId", libraryController.deleteLibraryController );
+router.delete("/:libraryId",userIsAdminMDW ,libraryController.deleteLibraryController );
 
 
 module.exports = router;

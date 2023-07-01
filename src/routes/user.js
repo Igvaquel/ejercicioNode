@@ -7,10 +7,6 @@ router.post("/", userController.createUserController );
 
 router.get("/:userId", userController.getUserController);
 
-router.get("/:userId", userController.getUserController);
-
-router.put("/:userId", userController.updateUserController);
-
 
 module.exports = router;
 
